@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon CV en ligne</title>
+    <style>
+        /* CSS pour empêcher l'impression */
+        @media print {
+            body {
+                display: none;
+            }
+        }
+
+        /* CSS pour l'image */
+        img {
+            width: 100%;
+            max-width: 800px; /* Limite la taille de l'image */
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script>
+        // Désactiver le clic droit sur l'image
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1> </h1>
+    </header>
+
+    <!-- Affichage de l'image -->
+    <img src="UX Designer-C.VAILLANT.jpg" alt="Mon CV">
+
+    <footer>
+        <p>Copyright © 2025</p>
+    </footer>
+</body>
+</html>
