@@ -1,1 +1,95 @@
-delete index.html content
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Protégé avec Zoom et Défilement</title>
+  <style>
+    /* Styles globaux pour protéger le contenu */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4; /* Fond clair */
+      user-select: none; /* Désactive la sélection de texte */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    /* Désactiver l'impression */
+    @media print {
+      body {
+        display: none; /* Cache tout lors de l'impression */
+      }
+    }
+
+    /* Conteneur pour l'image avec zoom et défilement */
+    .cv-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Aligne en haut */
+      overflow-y: scroll; /* Permet le défilement vertical */
+      overflow-x: hidden; /* Empêche le défilement horizontal */
+      height: 100vh; /* Utilise toute la hauteur de l'écran */
+    }
+
+    /* Style de l'image */
+    .cv-image {
+      max-width: 100%; /* S'adapte à la largeur de l'écran */
+      height: auto; /* Conserve les proportions */
+      cursor: zoom-in; /* Curseur pour indiquer le zoom */
+      transition: transform 0.2s ease-in-out; /* Animation de zoom */
+    }
+
+    /* Zoom au clic */
+    .cv-image.zoomed {
+      transform: scale(2); /* Zoom à 200% */
+      cursor: zoom-out; /* Changer le curseur pour le dézoom */
+    }
+  </style>
+  <script>
+    // Désactiver le clic droit
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // Désactiver l'impression avec Ctrl+P ou Cmd+P
+    document.addEventListener('keydown', (e) => {
+      if (
+        (e.ctrlKey || e.metaKey) && // Ctrl ou Cmd (Mac)
+        (e.key === 'p' || e.key === 'P') // Touche P
+      ) {
+        e.preventDefault();
+        alert('L’impression de cette page est désactivée.');
+      }
+    });
+
+    // Désactiver les raccourcis courants pour enregistrer ou inspecter
+    document.addEventListener('keydown', (e) => {
+      // Ctrl+S ou Cmd+S pour "Enregistrer sous"
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        alert('Cette action est désactivée.');
+      }
+
+      // Ctrl+Shift+I ou F12 pour ouvrir les outils développeur
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+        alert('Les outils développeur sont désactivés.');
+      }
+    });
+
+    // Ajout du zoom sur l'image
+    document.addEventListener('DOMContentLoaded', () => {
+      const image = document.querySelector('.cv-image');
+      image.addEventListener('click', () => {
+        image.classList.toggle('zoomed'); // Active/désactive le zoom
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="cv-container">
+    <!-- Remplacez le chemin ci-dessous par celui de votre fichier JPG -->
+    <img src="UX Designer-C.VAILLANT.jpg" alt="CV Protégé" class="cv-image">
+  </div>
+</body>
+</html>
